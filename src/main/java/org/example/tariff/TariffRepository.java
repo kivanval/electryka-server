@@ -22,7 +22,7 @@ public class TariffRepository implements PanacheRepository<Tariff> {
             .firstResultOptional().stream().toList()
     );
     tariffs.addAll(
-        find("date > ?1 and (data is null or date <= ?2) and meterType = ?3",
+        find("date > ?1 and (date is null or date <= ?2) and meterType = ?3",
             Sort.descending("date"),
             start, end, meterType)
             .list()
