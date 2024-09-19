@@ -2,10 +2,9 @@ package org.example.tariff;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.proxy.HibernateProxy;
+import org.hibernate.validator.constraints.UniqueElements;
 
-import java.time.LocalDateTime;
-import java.util.Objects;
+import java.time.Instant;
 
 @Getter
 @Setter
@@ -16,27 +15,22 @@ import java.util.Objects;
 public class Tariff {
   @Id
   @GeneratedValue
-  public Long id;
+  Long id;
 
   @Enumerated(EnumType.STRING)
-  @Column(name = "meter_type")
   MeterType meterType;
 
-  LocalDateTime date;
+  Instant date;
 
-  @Override
-  public final boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null) return false;
-    Class<?> oEffectiveClass = o instanceof HibernateProxy proxy ? proxy.getHibernateLazyInitializer().getPersistentClass() : o.getClass();
-    Class<?> thisEffectiveClass = this instanceof HibernateProxy proxy ? proxy.getHibernateLazyInitializer().getPersistentClass() : this.getClass();
-    if (thisEffectiveClass != oEffectiveClass) return false;
-    Tariff tariff = (Tariff) o;
-    return getId() != null && Objects.equals(getId(), tariff.getId());
-  }
+  Double price;
 
-  @Override
-  public final int hashCode() {
-    return this instanceof HibernateProxy proxy ? proxy.getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
-  }
+  Double dayPrice;
+
+  Double nightPrice;
+
+  Double morningPrice;
+
+  Double semiPeakPrice;
+
+  Double peakPrice;
 }

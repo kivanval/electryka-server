@@ -21,8 +21,10 @@ dependencies {
     implementation 'io.quarkus:quarkus-arc'
     implementation 'io.quarkus:quarkus-hibernate-validator'
     implementation 'one.util:streamex:0.8.3'
-    implementation 'io.quarkiverse.jpastreamer:quarkus-jpastreamer:3.0.3.Final'
-    annotationProcessor 'com.speedment.jpastreamer:fieldgenerator-standard:3.0.4'
+    implementation 'com.google.guava:guava:33.3.0-jre'
+    implementation "org.mapstruct:mapstruct:1.5.5.Final"
+    annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.1'
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
 }
