@@ -1,0 +1,9 @@
+quarkus:
+  rest:
+    path: api
+  hibernate-orm:
+    database:
+      generation: drop-and-create
+    log:
+      sql: true
+      bind-parameters: true
