@@ -13,7 +13,7 @@ import java.util.ArrayList;
 @AllArgsConstructor
 public class TariffRepository implements PanacheRepository<Tariff> {
 
-  ArrayList<Tariff> tariffs(Instant start, @Nullable Instant end, MeterType meterType) {
+  ArrayList<Tariff> tariffs(Instant start, Instant end, MeterType meterType) {
     var tariffs = new ArrayList<>(
         find(
             "date <= ?1 and meterType = ?2",
@@ -22,11 +22,12 @@ public class TariffRepository implements PanacheRepository<Tariff> {
             .firstResultOptional().stream().toList()
     );
     tariffs.addAll(
-        find("date > ?1 and (date is null or date <= ?2) and meterType = ?3",
+        find("date > ?1 and date <= ?2 and meterType = ?3",
             Sort.descending("date"),
             start, end, meterType)
             .list()
     );
+
     return tariffs;
   }
 }
