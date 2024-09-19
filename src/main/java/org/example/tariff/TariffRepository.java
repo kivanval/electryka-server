@@ -19,10 +19,10 @@ public class TariffRepository implements PanacheRepository<Tariff> {
             "date <= ?1 and meterType = ?2",
             Sort.descending("date"),
             start, meterType)
-            .singleResultOptional().stream().toList()
+            .firstResultOptional().stream().toList()
     );
     tariffs.addAll(
-        find("date > ?1 and date <= ?2 and meterType = ?3",
+        find("date > ?1 and (data is null or date <= ?2) and meterType = ?3",
             Sort.descending("date"),
             start, end, meterType)
             .list()
