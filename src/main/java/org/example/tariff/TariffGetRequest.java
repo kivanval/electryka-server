@@ -19,7 +19,7 @@ public class TariffGetRequest {
   @QueryParam("end")
   @NotNull
   Instant end;
-  @QueryParam("meter_type")
+  @QueryParam("meter-type")
   @NotNull
   MeterType meterType;
 }

@@ -7,14 +7,12 @@ import org.hibernate.proxy.HibernateProxy;
 
 import java.util.Objects;
 
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@Data
 @Entity
 public class TwoZoneTariff extends Tariff {
-  long dayPrice;
-  long nightPrice;
+  double dayPrice;
+  double nightPrice;
 
   @Override
   public final boolean equals(Object o) {

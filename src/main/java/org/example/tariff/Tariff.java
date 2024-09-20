@@ -1,22 +1,17 @@
 package org.example.tariff;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.Instant;
 
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
+@Data
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "date"))
 public class Tariff {
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   Long id;
 
   Instant date;
