@@ -8,17 +8,30 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
     nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface TariffMapper {
 
-  OneZoneTariff toOneZoneTariff(TariffPostRequest request);
+  OneZoneTariff toOneZoneTariff(TariffDto request);
 
-  TwoZoneTariff toTwoZoneTariff(TariffPostRequest request);
+  TwoZoneTariff toTwoZoneTariff(TariffDto request);
 
-  ThreeZoneTariff toThreeZoneTariff(TariffPostRequest request);
+  ThreeZoneTariff toThreeZoneTariff(TariffDto request);
 
-  default Tariff toTariff(TariffPostRequest request) {
+  default Tariff toModel(TariffDto request) {
     return switch (request.meterType) {
       case ONE_ZONE -> toOneZoneTariff(request);
       case TWO_ZONE -> toTwoZoneTariff(request);
       case THREE_ZONE -> toThreeZoneTariff(request);
+    };
+  }
+
+  TariffDto toDto(OneZoneTariff tariff);
+  TariffDto toDto(TwoZoneTariff tariff);
+  TariffDto toDto(ThreeZoneTariff tariff);
+
+  default TariffDto toDto(Tariff tariff) {
+    return switch (tariff) {
+      case OneZoneTariff oneZoneTariff -> toDto(oneZoneTariff);
+      case TwoZoneTariff twoZoneTariff -> toDto(twoZoneTariff);
+      case ThreeZoneTariff threeZoneTariff -> toDto(threeZoneTariff);
+      default -> throw new IllegalStateException("Unexpected value: " + tariff);
     };
   }
 }

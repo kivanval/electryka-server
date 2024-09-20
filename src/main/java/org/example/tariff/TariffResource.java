@@ -18,13 +18,16 @@ public class TariffResource {
 
   @GET
   @Transactional
-  public List<Tariff> tariffs(@Valid @BeanParam TariffGetRequest request) {
-    return repository.tariffs(request.start, request.end, request.meterType);
+  public List<TariffDto> tariffs(@Valid @BeanParam TariffGetRequest request) {
+    return repository.tariffs(request.start, request.end, request.meterType)
+        .stream()
+        .map(mapper::toDto)
+        .toList();
   }
 
   @POST
   @Transactional
-  public void create(@Valid TariffPostRequest tariff) {
-    repository.persist(mapper.toTariff(tariff));
+  public void create(@Valid TariffDto tariff) {
+    repository.persist(mapper.toModel(tariff));
   }
 }

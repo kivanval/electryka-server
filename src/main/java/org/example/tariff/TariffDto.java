@@ -8,7 +8,7 @@ import lombok.Data;
 import java.time.Instant;
 
 @Data
-public class TariffPostRequest {
+public class TariffDto {
   MeterType meterType;
   @PastOrPresent
   @NotNull
