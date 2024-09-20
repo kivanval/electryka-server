@@ -17,6 +17,7 @@ public class TariffGetRequest {
   @NotNull
   Instant start;
   @QueryParam("end")
+  @NotNull
   Instant end;
   @QueryParam("meter_type")
   @NotNull

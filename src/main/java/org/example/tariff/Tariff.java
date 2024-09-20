@@ -1,38 +1,26 @@
 package org.example.tariff;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.time.Instant;
 
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
-@JsonInclude(Include.NON_NULL)
 public class Tariff {
   @Id
   @GeneratedValue
   Long id;
 
-  @Enumerated(EnumType.STRING)
-  MeterType meterType;
-
   Instant date;
 
-  Double price;
-
-  Double dayPrice;
-
-  Double nightPrice;
-
-  Double morningPrice;
-
-  Double semiPeakPrice;
-
-  Double peakPrice;
+  @Enumerated(EnumType.STRING)
+  MeterType meterType;
 }

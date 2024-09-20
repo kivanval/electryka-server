@@ -16,6 +16,8 @@ public class TariffPostRequest {
   @PositiveOrZero
   Double price;
   @PositiveOrZero
+  Double morningPrice;
+  @PositiveOrZero
   Double dayPrice;
   @PositiveOrZero
   Double nightPrice;

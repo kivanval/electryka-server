@@ -8,5 +8,17 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
     nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface TariffMapper {
 
-  Tariff toModel(TariffPostRequest request);
+  OneZoneTariff toOneZoneTariff(TariffPostRequest request);
+
+  TwoZoneTariff toTwoZoneTariff(TariffPostRequest request);
+
+  ThreeZoneTariff toThreeZoneTariff(TariffPostRequest request);
+
+  default Tariff toTariff(TariffPostRequest request) {
+    return switch (request.meterType) {
+      case ONE_ZONE -> toOneZoneTariff(request);
+      case TWO_ZONE -> toTwoZoneTariff(request);
+      case THREE_ZONE -> toThreeZoneTariff(request);
+    };
+  }
 }

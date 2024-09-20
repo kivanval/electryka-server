@@ -26,6 +26,6 @@ public class TariffResource {
   @POST
   @Transactional
   public void create(@Valid TariffPostRequest tariff) {
-    repository.persist(mapper.toModel(tariff));
+    repository.persist(mapper.toTariff(tariff));
   }
 }
