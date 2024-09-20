@@ -20,6 +20,8 @@ dependencies {
     implementation 'io.quarkus:quarkus-jdbc-postgresql'
     implementation 'io.quarkus:quarkus-arc'
     implementation 'io.quarkus:quarkus-hibernate-validator'
+    implementation 'io.quarkus:quarkus-smallrye-openapi'
+    implementation 'io.quarkus:quarkus-swagger-ui'
     implementation 'one.util:streamex:0.8.3'
     implementation 'com.google.guava:guava:33.3.0-jre'
     implementation "org.mapstruct:mapstruct:1.5.5.Final"
