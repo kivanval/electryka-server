@@ -14,13 +14,10 @@ import java.time.Instant;
 @AllArgsConstructor
 public class TariffGetRequest {
   @QueryParam("start")
-  @Positive
   @NotNull
-  long start;
+  Instant start;
   @QueryParam("end")
-  @Positive
-  @NotNull
-  long end;
+  Instant end;
   @QueryParam("meter_type")
   @NotNull
   MeterType meterType;

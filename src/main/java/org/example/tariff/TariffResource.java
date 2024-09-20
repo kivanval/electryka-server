@@ -20,11 +20,7 @@ public class TariffResource {
   @GET
   @Transactional
   public Response tariffs(@Valid @BeanParam TariffGetRequest request) {
-    return Response.ok(repository.tariffs(
-        Instant.ofEpochSecond(request.start),
-        Instant.ofEpochSecond(request.end),
-        request.meterType)
-    ).build();
+    return Response.ok(repository.tariffs(request.start, request.end, request.meterType)).build();
   }
 
   @POST
